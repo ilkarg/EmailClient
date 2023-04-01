@@ -8,8 +8,10 @@ function Login() {
         document.title = 'Авторизация - IceMail';
     }, []);
 
-    const [login, setLogin] = useState('');
-    const [password, setPassword] = useState('');
+    const [data, setData] = useState({
+        login: "",
+        password: ""
+    });
 
     return (
         <div className="Login">
@@ -40,7 +42,7 @@ function Login() {
                                             type="email"
                                             label="Почта"
                                             id="registration-email-input"
-                                            onChange={(event) => setLogin(event.target.value)}
+                                            onChange={(event) => setData((prev) => ({...prev, login: event.target.value}))}
                                         />
                                     </FormControl>
                                 </Typography>
@@ -50,7 +52,7 @@ function Login() {
                                             type="password"
                                             label="Пароль"
                                             id="registration-password-input"
-                                            onChange={(event) => setPassword(event.target.value)}
+                                            onChange={(event) => setData((prev) => ({...prev, password: event.target.value}))}
                                         />
                                     </FormControl>
                                 </Typography>
@@ -61,8 +63,8 @@ function Login() {
                                 variant="contained"
                                 size="small"
                                 onClick={() => sendLoginRequest({
-                                    "login": login,
-                                    "password": password
+                                    "login": data.login,
+                                    "password": data.password
                                 })}
                                 className="login-link"
                                 sx={{ minWidth: 200, minHeight: 30 }}
